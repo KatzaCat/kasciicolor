@@ -6,7 +6,12 @@ add_library(${PROJECT_NAME} INTERFACE)
 
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_SOURCE_DIR}/include)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
+
+# Dummy EXE so that the compile commands with gen
+add_executable(dummy src/main.cpp)
+target_include_directories(dummy PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
+set_target_properties(dummy PROPERTIES
   CXX_STANDARD 23
 )
 
