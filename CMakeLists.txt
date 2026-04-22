@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 4.2.0)
 
 project(kasciicolor LANGUAGES CXX VERSION 4.21.26)
 
-add_library(${PROJECT_NAME} STATIC 
-  src/kasciicolor.cpp
-)
+add_library(${PROJECT_NAME} INTERFACE)
+
+target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_SOURCE_DIR}/include)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
   CXX_STANDARD 23
