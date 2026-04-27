@@ -25,7 +25,7 @@ namespace k {
       inline static const char BRIGHT_CYAN    = 96;
       inline static const char BRIGHT_WHITE   = 97;
 
-      // Background colors 
+      // Background colors
 
       inline static const char BLACK_BACKGROUND          = 40;
       inline static const char RED_BACKGROUND            = 41;
@@ -51,10 +51,14 @@ namespace k {
     public:
 
       // Coloring a string
-      inline static const std::string colorString(const char color, const std::string text) 
+      inline static const std::string colorString(const char color, const std::string text)
       {return std::format("\e[{}m{}", std::to_string(color), text);}
 
-      inline static const std::string colorStringOnly(const char color, const std::string text) 
+      inline static const std::string colorStringOnly(const char color, const std::string text)
       {return std::format("\e[{}m{}\e[{}m", std::to_string(color), text, k::AsciiColor::RESET);}
+
+      // Getting the string varient of the colors
+      inline static const std::string getCodeAsString(const char color_code)
+      {return std::format("\e[{}m", color_code);}
   };
 }
