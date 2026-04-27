@@ -4,18 +4,17 @@ project(kasciicolor LANGUAGES CXX VERSION 4.21.26)
 
 add_library(${PROJECT_NAME} INTERFACE)
 
-target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_SOURCE_DIR}/include)
-
-
-# Dummy EXE so that the compile commands with gen
-add_executable(dummy src/main.cpp)
-target_include_directories(dummy PRIVATE ${CMAKE_SOURCE_DIR}/include)
-
-set_target_properties(dummy PROPERTIES
-  CXX_STANDARD 23
+target_include_directories(${PROJECT_NAME}
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
 
+add_library(kasciicolor::kasciicolor ALIAS ${PROJECT_NAME})
+
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_23)
+
 if(KAC_ISTESTING)
-  enable_testing()
-  add_subdirectory(tests)
+        enable_testing()
+        add_subdirectory(tests)
 endif()
